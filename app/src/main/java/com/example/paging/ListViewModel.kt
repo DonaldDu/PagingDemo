@@ -38,5 +38,4 @@ class ListViewModel : ViewModel() {
     fun retry() {
         dataSource.value?.retry()
     }
-
 }

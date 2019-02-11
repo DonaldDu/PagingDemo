@@ -6,7 +6,7 @@ import com.example.paging.adapter.LoadingState
 
 class DataSourceByItem : ItemKeyedDataSource<Int, DataBean>(), IDataSource {
 
-    val result = MutableLiveData<ResultBean>()
+    private val result = MutableLiveData<ResultBean>()
 
     private var retry: (() -> Unit)? = null
 

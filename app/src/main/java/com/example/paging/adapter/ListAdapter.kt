@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import com.example.paging.R
 import com.example.paging.data.DataBean
 
-class ListAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<DataBean, RecyclerView.ViewHolder>(comparator) {
+class ListAdapter(private val retryCallback: () -> Unit) :
+    PagedListAdapter<DataBean, RecyclerView.ViewHolder>(comparator) {
 
     private var listState = LoadingState.Normal
 
@@ -61,8 +62,7 @@ class ListAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<Data
     }
 
     fun setLoadingState(loadingState: LoadingState) {
-        if (this.listState == loadingState)
-            return
+        if (this.listState == loadingState) return
 
         val lastItemCount = itemCount
         this.listState = loadingState
@@ -90,11 +90,8 @@ class ListAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<Data
     companion object {
 
         private val comparator = object : DiffUtil.ItemCallback<DataBean>() {
-
             override fun areItemsTheSame(oldItem: DataBean, newItem: DataBean) = (oldItem.id == newItem.id)
-
             override fun areContentsTheSame(oldItem: DataBean, newItem: DataBean) = (oldItem == newItem)
-
         }
     }
 
