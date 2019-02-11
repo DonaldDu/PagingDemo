@@ -24,8 +24,8 @@ class ListViewModel : ViewModel() {
     private val dataSourceFactory = object : DataSource.Factory<Int, DataBean>() {
 
         override fun create(): DataSource<Int, DataBean> {
-//            return DataSourceByPage().apply { listDataSource.postValue(this) }
-            return DataSourceByItem().apply { dataSource.postValue(this) }
+            return DataSourceByPage().apply { dataSource.postValue(this) }
+//            return DataSourceByItem().apply { dataSource.postValue(this) }
         }
     }
 

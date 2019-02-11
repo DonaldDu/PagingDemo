@@ -9,7 +9,7 @@ class DataSourceByPage : PageKeyedDataSource<Int, DataBean>(), IDataSource {
     private val pageSize = 30
     private val initPageSize = pageSize * 2
 
-    val result = MutableLiveData<ResultBean>()
+    private val result = MutableLiveData<ResultBean>()
 
     private var retry: (() -> Unit)? = null
 
