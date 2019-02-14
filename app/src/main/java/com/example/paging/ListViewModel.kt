@@ -17,14 +17,14 @@ class ListViewModel : ViewModel() {
         .setPageSize(pageSize)
         .build()
 
-    private val dataSource = MutableLiveData<IDataSource>()
+    private var dataSource: IDataSource? = null
 
-    val result = switchMap(dataSource) { it.getResultBean() }!!
+    val result = MutableLiveData<ResultBean>()
 
     private val dataSourceFactory = object : DataSource.Factory<Int, DataBean>() {
 
         override fun create(): DataSource<Int, DataBean> {
-            return DataSourceByPage().apply { dataSource.postValue(this) }
+            return DataSourceByPage(result).apply { dataSource = this }
 //            return DataSourceByItem().apply { dataSource.postValue(this) }
         }
     }
@@ -32,10 +32,10 @@ class ListViewModel : ViewModel() {
     val livePagedList = LivePagedListBuilder(dataSourceFactory, config).build()
 
     fun refresh() {
-        dataSource.value?.refresh()
+        dataSource?.refresh()
     }
 
     fun retry() {
-        dataSource.value?.retry()
+        dataSource?.retry()
     }
 }

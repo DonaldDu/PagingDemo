@@ -64,7 +64,4 @@ class DataSourceByItem : ItemKeyedDataSource<Int, DataBean>(), IDataSource {
         invalidate()
     }
 
-    override fun getResultBean(): MutableLiveData<ResultBean> {
-        return result
-    }
 }

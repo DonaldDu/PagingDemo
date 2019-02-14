@@ -4,12 +4,11 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.PageKeyedDataSource
 import com.example.paging.adapter.LoadingState
 
-class DataSourceByPage : PageKeyedDataSource<Int, DataBean>(), IDataSource {
+class DataSourceByPage(private val result: MutableLiveData<ResultBean>) : PageKeyedDataSource<Int, DataBean>(),
+    IDataSource {
 
     private val pageSize = 30
     private val initPageSize = pageSize * 2
-
-    private val result = MutableLiveData<ResultBean>()
 
     private var retry: (() -> Unit)? = null
 
@@ -62,9 +61,5 @@ class DataSourceByPage : PageKeyedDataSource<Int, DataBean>(), IDataSource {
 
     override fun refresh() {
         invalidate()
-    }
-
-    override fun getResultBean(): MutableLiveData<ResultBean> {
-        return result
     }
 }
